@@ -5,11 +5,11 @@
 }
 
 <h2>@Model.Post?.Title</h2>
-<p class="text-muted">توسط @Model.Post?.AuthorName — @Model.Post?.CreatedAt.ToString("yyyy-MM-dd")</p>
+<p class="text-muted">By @Model.Post?.AuthorName — @Model.Post?.CreatedAt.ToString("yyyy-MM-dd")</p>
 <p>@Model.Post?.Content</p>
 
 <hr />
-<h4>کامنت‌ها</h4>
+<h4>Comments</h4>
 
 @foreach (var comment in Model.Comments)
 {
