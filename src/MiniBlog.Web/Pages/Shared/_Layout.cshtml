@@ -10,6 +10,22 @@
     <link rel="stylesheet" href="~/MiniBlog.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
+    <ul class="navbar-nav ms-auto">
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <li class="nav-item"><span class="nav-link">Hello @User.Identity.Name</span></li>
+            <li class="nav-item">
+                <form method="post" asp-controller="Account" asp-page="Logout">
+                    <button type="submit" class="btn btn-link nav-link">Exit</button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item"><a class="nav-link" asp-page="/Account/Login">Login</a></li>
+            <li class="nav-item"><a class="nav-link" asp-page="/Account/Register">Sign In</a></li>
+        }
+    </ul>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
