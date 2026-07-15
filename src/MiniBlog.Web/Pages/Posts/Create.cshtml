@@ -1,0 +1,19 @@
+﻿@page
+@model MiniBlog.Web.Pages.Posts.CreateModel
+@{
+    ViewData["Title"] = "New Post";
+}
+
+<h2>افزودن پست جدید</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label>Title</label>
+        <input asp-for="Input.Title" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Text</label>
+        <textarea asp-for="Input.Content" class="form-control" rows="6"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
