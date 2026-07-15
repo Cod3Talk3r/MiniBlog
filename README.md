@@ -1,4 +1,4 @@
-#MiniBlog
+# MiniBlog
 
 A simple blogging application built with ASP.NET Core (Razor Pages + Web API) to demonstrate .NET development skills and modern backend development practices.
 
