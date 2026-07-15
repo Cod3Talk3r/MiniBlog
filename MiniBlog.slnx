@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MiniBlog.Application/MiniBlog.Application.csproj" />
+    <Project Path="src/MiniBlog.Domain/MiniBlog.Domain.csproj" />
+    <Project Path="src/MiniBlog.Infrastructure/MiniBlog.Infrastructure.csproj" />
+    <Project Path="src/MiniBlog.Web/MiniBlog.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MiniBlog.IntegrationTests/MiniBlog.IntegrationTests.csproj" />
+  </Folder>
+</Solution>
