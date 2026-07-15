@@ -2,6 +2,7 @@
 using MiniBlog.Application.Interfaces;
 using MiniBlog.Domain.Entities;
 using MiniBlog.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace MiniBlog.Application.Services
 {
@@ -16,10 +17,8 @@ namespace MiniBlog.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<(IEnumerable<PostDto> Items, int TotalCount)> GetPagedAsync(
-            int page, int pageSize, string? search, CancellationToken cancellationToken = default)
+        public async Task<(IEnumerable<PostDto> Items, int TotalCount)> GetPagedAsync(int page, int pageSize, string? search, CancellationToken cancellationToken = default)
         {
-            // IQueryable => Didn't execute the query yet, just build it
             IQueryable<Post> query = _postRepository.GetAllQueryable();
 
             if (!string.IsNullOrWhiteSpace(search))
@@ -27,13 +26,13 @@ namespace MiniBlog.Application.Services
                 query = query.Where(p => p.Title.Contains(search) || p.Content.Contains(search));
             }
 
-            var totalCount = await Task.Run(() => query.Count(), cancellationToken);
+            var totalCount = await query.CountAsync(cancellationToken);
 
-            var posts = query
+            var posts = await query
                 .OrderByDescending(p => p.CreatedAt)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .ToList();
+                .ToListAsync(cancellationToken);
 
             var dtos = _mapper.Map<IEnumerable<PostDto>>(posts);
             return (dtos, totalCount);
