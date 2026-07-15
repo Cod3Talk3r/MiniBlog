@@ -121,6 +121,10 @@ builder.Services.AddControllers(options =>
 });
 builder.Services.AddRazorPages();
 
+builder.Services.Configure<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions>(
+    Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme,
+    options => options.MapInboundClaims = false);
+
 var app = builder.Build();
 
 // ---------- Middleware Pipeline ----------
@@ -144,5 +148,5 @@ app.MapRazorPages();
 
 app.Run();
 
-// برای Integration Testing با WebApplicationFactory لازمه
+// For Integration Test.
 public partial class Program { }
