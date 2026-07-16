@@ -27,7 +27,7 @@ namespace MiniBlog.Web.Middleware
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-                var response = new { error = "خطای داخلی سرور رخ داد", detail = ex.Message };
+                var response = new { error = "Server internal error!", detail = ex.Message };
                 await context.Response.WriteAsync(JsonSerializer.Serialize(response));
             }
         }
